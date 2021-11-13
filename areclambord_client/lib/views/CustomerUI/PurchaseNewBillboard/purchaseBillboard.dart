@@ -17,7 +17,7 @@ import 'package:file_picker/file_picker.dart';
 // import 'package:firebase_core/firebase_core.dart';
 
 class BuyBillboardVacancy extends StatefulWidget {
-  BuyBillboardVacancy({Key? key, required this.vacancyForPurchase, required this.localId}) : super(key: key);
+  const BuyBillboardVacancy({Key? key, required this.vacancyForPurchase, required this.localId}) : super(key: key);
   final String localId;
   final BillboardVacancyResponse vacancyForPurchase;
   @override
@@ -36,17 +36,17 @@ class _BuyBillboardVacancyState extends State<BuyBillboardVacancy> {
   late BillboardVacancyResponse _vacancyForPurchase;
   static bool isPurchaseProcessing = false;
   late String _localId;
-  late String billboardDesignUrl;
-  late File billboardDesignFile;
+  String billboardDesignUrl = "";
+  // late File billboardDesignFile;
   // var fileBytes;
-  late PlatformFile designPlatformFile;
-  late Uint8List byteListForPlatformFile;
+  PlatformFile? designPlatformFile;
+  Uint8List? byteListForPlatformFile;
   // late StorageController _storageController = StorageController();
 
-  // bool _initialized = false;
-  // bool _error = false;
+  bool _initialized = false;
+  bool _error = false;
 
-  late String selectedPackageType;
+  String selectedPackageType = 'Silver';
   List<String> billboardPackageType = <String>[
     'Silver',
     'Gold',
@@ -56,28 +56,11 @@ class _BuyBillboardVacancyState extends State<BuyBillboardVacancy> {
   final _formKey = GlobalKey<FormState>();
   // Future<HttpResponse> _registerUser;
 
-//   void initializeFlutterFire() async {
-//   try {
-//     // Wait for Firebase to initialize and set `_initialized` state to true
-//     await Firebase.initializeApp();
-//     setState(() {
-//       _initialized = true;
-//     });
-//   } catch(e) {
-//     // Set `_error` state to true if Firebase initialization fails
-//     print(e.toString());
-//     setState(() {
-//       _error = true;
-//     });
-//   }
-// }
-
   @override
   void initState() {
     // vacancyList = getBillboardVacancies();
     _localId = widget.localId;
     _vacancyForPurchase = widget.vacancyForPurchase;
-    // initializeFlutterFire();    
     super.initState();
     
   }  
@@ -95,11 +78,29 @@ class _BuyBillboardVacancyState extends State<BuyBillboardVacancy> {
     // String ss = _storageController.uploadBillboardDesign(fileBytes);
     // print(ss);
 
+  
+
   buyBillboardVacancy() async {
     setState(() {
           isPurchaseProcessing = true;
         });    
     
+    // String myUrl;
+    // _storageController.uploadBillboardDesign(designPlatformFile).then((String url){
+    //   // setState(() {
+    //   //   billboardDesignUrl = url; 
+    //   //   print(billboardDesignUrl);       
+    //   // });
+    //   myUrl = url;
+    //   print("Myurl: " + myUrl);
+    // });
+    // String ss = _storageController.uploadBillboardDesign(fileBytes);
+    // print(ss);
+
+
+
+
+
 
     PurchaseBillboard newPurchase = PurchaseBillboard(billboardId: _vacancyForPurchase.id, customerName: customerName.controller!.text, customerEmail: customerEmail.controller!.text,
                                     customerContactNo: customerContactNo.controller!.text, designLink: billboardDesignUrl , packageType: selectedPackageType, customerId: _localId);
@@ -123,7 +124,7 @@ class _BuyBillboardVacancyState extends State<BuyBillboardVacancy> {
       var returnBody = jsonDecode(response.body);
 
         final snackBar = SnackBar(
-        duration: Duration(milliseconds: 2100),
+        duration: const Duration(milliseconds: 2100),
         content: Text(returnBody['message']),
         backgroundColor: Colors.teal[900]
         );
@@ -142,7 +143,7 @@ class _BuyBillboardVacancyState extends State<BuyBillboardVacancy> {
 
   purchaseButton() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0.5, 0.5, 0.5, 0.5),
+      padding: const EdgeInsets.fromLTRB(0.5, 0.5, 0.5, 0.5),
       child: MaterialButton(
           minWidth: 200,
           height: 40,  
@@ -170,7 +171,7 @@ class _BuyBillboardVacancyState extends State<BuyBillboardVacancy> {
 
 backToHomeButton() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0.5, 0.5, 0.5, 0.5),
+      padding: const EdgeInsets.fromLTRB(0.5, 0.5, 0.5, 0.5),
       child: MaterialButton(
         minWidth: 200,
         height: 40,  
@@ -195,7 +196,7 @@ backToHomeButton() {
 
   selectBillboardDesignButton() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0.5, 0.5, 0.5, 0.5),
+      padding: const EdgeInsets.fromLTRB(0.5, 0.5, 0.5, 0.5),
       child: MaterialButton(
         minWidth: 180,
         height: 35,  
@@ -204,7 +205,7 @@ backToHomeButton() {
           borderRadius: BorderRadius.circular(70.0)
         ),
         color: Colors.grey[850],
-        child: Text(
+        child: const Text(
           "Select Bilboard Design",
           style: TextStyle(
             fontSize: 12.0,
@@ -245,7 +246,7 @@ backToHomeButton() {
           designPlatformFile = result.files.single;
           byteListForPlatformFile = result.files.single.bytes;
           // billboardDesignUrl = imageStoreUrl + designPlatformFile.name;          
-          List<String> splitted = designPlatformFile.name.split(".");
+          List<String> splitted = designPlatformFile!.name.split(".");
           billboardDesignUrl = imageStoreUrlList[int.parse(splitted[0])];
           // print(splitted[0]);
           // print(imageStoreUrlList[int.parse(splitted[0])]);
@@ -270,7 +271,7 @@ backToHomeButton() {
   //reg variables  
     final customerName = TextFormField(
       controller: CustomerNameController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Customer Name", hintText: "Enter name here"
       ),
       // validator: (value){
@@ -283,7 +284,7 @@ backToHomeButton() {
 
     final customerEmail = TextFormField(
       controller: CustomerEmailController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Email", hintText: "Enter email here"
       ),
       // validator: (value){
@@ -296,7 +297,7 @@ backToHomeButton() {
 
     final customerContactNo = TextFormField(
         controller: CustomerContactNoController,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: "Contact No", hintText: "Enter contact No"
         ),
         // validator: (value){
@@ -309,7 +310,7 @@ backToHomeButton() {
 
   final designLink = TextFormField(
       controller: DesignLinkController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Drive link for Billboard Advertisement", hintText: "Enter sharable link for ad design here"
       ),
       // validator: (value){
@@ -337,27 +338,27 @@ backToHomeButton() {
         fit: StackFit.expand,
         children: <Widget>[ 
           Padding(
-            padding: EdgeInsets.only(top:8.0, bottom: 8.0, left: 60.0, right: 60.0),
+            padding: const EdgeInsets.only(top:8.0, bottom: 8.0, left: 60.0, right: 60.0),
             // child: Card(
             //   elevation: 10.0,
               child: SingleChildScrollView( 
               //elevation: 10.0,
           child: Padding(                
             //padding: EdgeInsets.all(5.0),
-          padding: EdgeInsets.only(top:8.0, bottom: 8.0, left: 30.0, right: 30.0),
+          padding: const EdgeInsets.only(top:8.0, bottom: 8.0, left: 30.0, right: 30.0),
           child: Column(                     
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     "Purchase Billboard for Advertisement",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),                  
                 ],
               ),
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [                  
@@ -367,7 +368,7 @@ backToHomeButton() {
                   color:Colors.grey[700]),)
                 ],
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -380,7 +381,7 @@ backToHomeButton() {
                     width: 200.0,
                   ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                       width: 20.0,
                     ),
                   SelectedBillDetailsCard(_vacancyForPurchase),
@@ -412,7 +413,7 @@ backToHomeButton() {
               //   ],
               // ),
               Padding(
-                padding: EdgeInsets.only(top:5.0, bottom: 5.0, left: 60.0, right: 60.0),
+                padding: const EdgeInsets.only(top:5.0, bottom: 5.0, left: 60.0, right: 60.0),
                 child: Form(
                 key: _formKey,
                 child: Column(                  
@@ -456,7 +457,7 @@ backToHomeButton() {
                           height: 120,
                           width: 220,
                           child: designPlatformFile != null 
-                          ? Image.memory(byteListForPlatformFile, fit: BoxFit.fill,)                      
+                          ? Image.memory(byteListForPlatformFile!, fit: BoxFit.fill,)                      
                           : Image.asset("assets/imageIfNull.jpg", fit: BoxFit.fill,
                           // height: 140.0,
                           // width: 420.0,
@@ -468,7 +469,7 @@ backToHomeButton() {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 80.0,
                             ),
                             selectBillboardDesignButton(),
@@ -477,15 +478,15 @@ backToHomeButton() {
                         
                       ],
                     ),                        
-                    SizedBox(
+                    const SizedBox(
                       height: 8.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         isPurchaseProcessing 
-                        ? Center(
-                        child: CircularProgressIndicator(),
+                        ? const Center(
+                        child: const CircularProgressIndicator(),
                         )
                         : purchaseButton(),
                         backToHomeButton(),

@@ -19,7 +19,7 @@ final _zsformKey = GlobalKey<FormState>();
 
   evaluateBillboardProgressButton() {
     return Padding(
-      padding: EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
+      padding: const EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
       // width: double.infinity,
       child: MaterialButton(
         hoverElevation: 20,
@@ -30,7 +30,7 @@ final _zsformKey = GlobalKey<FormState>();
           borderRadius: BorderRadius.circular(70.0)
         ),
         color: Colors.orange[400],
-        child: Text(
+        child: const Text(
           "Evaluate Progress of the Billboard",
           style: TextStyle(
             fontSize: 15.0,
@@ -54,7 +54,7 @@ final _zsformKey = GlobalKey<FormState>();
 
   backToHomeButton(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
+      padding: const EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
       child: MaterialButton(
         hoverElevation: 20.0, 
         minWidth: 200,
@@ -64,7 +64,7 @@ final _zsformKey = GlobalKey<FormState>();
           borderRadius: BorderRadius.circular(70.0)
         ),
         color: Colors.black,
-        child: Text(
+        child: const Text(
           "Back to Home",
           style: TextStyle(
             fontSize: 15.0,
@@ -90,7 +90,7 @@ final _zsformKey = GlobalKey<FormState>();
     double lat = double.parse(billboardVacancyResponse.latitude);
     double long = double.parse(billboardVacancyResponse.longitude);
     return Padding(
-      padding: EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
+      padding: const EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
       child: MaterialButton(
         hoverElevation: 20.0, 
         minWidth: 200,
@@ -100,7 +100,7 @@ final _zsformKey = GlobalKey<FormState>();
           borderRadius: BorderRadius.circular(70.0)
         ),
         color: Colors.grey[800],
-        child: Text(
+        child: const Text(
           "Show Location",
           style: TextStyle(
             fontSize: 15.0,
@@ -120,7 +120,7 @@ final _zsformKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
-                  padding: EdgeInsets.only(top:10.0, bottom: 10.0, left: 250.0, right: 250.0),
+                  padding: const EdgeInsets.only(top:8.0, bottom: 8.0, left: 250.0, right: 250.0),
                   child: Card(
                     color: Colors.orange[100],
                     elevation: 10,
@@ -128,9 +128,9 @@ final _zsformKey = GlobalKey<FormState>();
                     //elevation: 10.0,
                 child: Padding(                
                   //padding: EdgeInsets.all(5.0),
-                padding: EdgeInsets.only(top:20.0, bottom: 20.0, left: 50.0, right: 50.0),
+                padding: const EdgeInsets.only(top:10.0, bottom: 10.0, left: 50.0, right: 50.0),
                 child: isDetailsLoading                 
-                ? Center(
+                ? const Center(
                             child: CircularProgressIndicator(),
                 )
                 : Column(                     
@@ -140,12 +140,12 @@ final _zsformKey = GlobalKey<FormState>();
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           "Details of Selected Billboard",
-                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),                  
+                          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),                  
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 8,),
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.start,
                     //   children: <Widget>[                  
@@ -237,10 +237,10 @@ final _zsformKey = GlobalKey<FormState>();
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top:8.0, bottom: 8.0, left: 0, right: 0),
+                          padding: const EdgeInsets.only(top:8.0, bottom: 8.0, left: 0, right: 0),
                           // child: Form(
                           // key: _zsformKey,
-                          child: billboardVacancyResponse == null 
+                          child: billboardVacancyResponse.id == ""
                               ? Text(
                               "Select a purchased billboard to view details",
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red[900]),) 
@@ -253,7 +253,7 @@ final _zsformKey = GlobalKey<FormState>();
                               )                        
                           ),
                         Padding(
-                          padding: EdgeInsets.only(top:8.0, bottom: 8.0, left: 0, right: 0),
+                          padding: const EdgeInsets.only(top:8.0, bottom: 8.0, left: 0, right: 0),
                           // child: Form(
                           // key: _zsformKey,
                           child: backToHomeButton(context),             

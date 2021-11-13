@@ -173,18 +173,18 @@ class _EvaluateAdProgressState extends State<EvaluateAdProgress> {
 
   @override
   void dispose() {
-    print("Disposed");
+    // print("Disposed");
     isEnabledRemoveCard = false;
     isEnabledChangeSubscriptionCard = false;
     isEnabledMaintainCard = false;
-    print(isEnabledRemoveCard);
-    print(isEnabledChangeSubscriptionCard);
-    print(isEnabledMaintainCard);
+    // print(isEnabledRemoveCard);
+    // print(isEnabledChangeSubscriptionCard);
+    // print(isEnabledMaintainCard);
     super.dispose();
   }
 
   @override
-    Future<void> initState() async {
+    void initState(){
       // vacancyList = getBillboardVacancies();
       _billboardVacancyResponse = widget.billboardVacancyResponse;
       _selectedPurchaseId = widget.selectedPurchaseId;

@@ -7,6 +7,7 @@ import 'package:areclambord_client/views/CustomerUI/CustomerDashboard/dashboardC
 import 'package:areclambord_client/views/CustomerUI/ProgressEvaluation/evaluateAdProgress.dart';
 // import 'package:areclambord_client/views/CustomerUI/purchaseBillboard.dart';
 import 'package:areclambord_client/views/CustomerUI/PurchasedBillboards/purchasedBillboardList.dart';
+import 'package:areclambord_client/views/CustomerUI/SupportCenter/submitTicket.dart';
 // import 'package:areclambord_client/views/CustomerUI/vacancyListView.dart';
 import 'package:areclambord_client/views/VendorUI/createBillboardVacancy.dart';
 import 'package:areclambord_client/views/VendorUI/VendorDashboard/dashboardVendor.dart';
@@ -83,14 +84,14 @@ class _LoginScreenState extends State<LoginScreen> {
           //   //addMall();
             
           // }
-          logInUserByCredentials();
-          // Navigator.push(
-          //   context,
-          //   // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
-          //   MaterialPageRoute(builder: (context) => DashboardCustomerScreen()),
-          //   // MaterialPageRoute(builder: (context) => PromotersDetails()),
-          //   // MaterialPageRoute(builder: (context) => PurchasedBillboardsByCustomer()),
-          // );                
+          // logInUserByCredentials();
+          Navigator.push(
+            context,
+            // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
+            MaterialPageRoute(builder: (context) => const SubmitTicketScreen()),
+            // MaterialPageRoute(builder: (context) => PromotersDetails()),
+            // MaterialPageRoute(builder: (context) => PurchasedBillboardsByCustomer()),
+          );                
         }
       ),
     );
@@ -105,8 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     String mokCustomerEmail = "sandaruwang.info@gmail.com";
     String mokCustomerPassword = "admin_z";
-    LoginCredentialsModel credentials = LoginCredentialsModel(email: userName.controller!.text, password: password.controller!.text);
-    // LoginCredentialsModel credentials = LoginCredentialsModel(email: mokCustomerEmail, password: mokCustomerPassword);
+    // LoginCredentialsModel credentials = LoginCredentialsModel(email: userName.controller!.text, password: password.controller!.text);
+    LoginCredentialsModel credentials = LoginCredentialsModel(email: mokEmail, password: mokPassword);
 
     
     var url = Uri.parse(aReclamboardApiUrl + 'api/user/signin/');  
@@ -131,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
           isLoggingInChecking = false;    
       });
-      print(loggedUser.type);
+      // print(loggedUser.type);
       // _loginScaffoldKey.currentState.showSnackBar(SnackBar(
       //   content: Text(returnBody['message']),
       //   backgroundColor: Colors.teal[900],        

@@ -17,7 +17,7 @@ class _ShowTopUpSheetState extends State<ShowTopUpSheet> {
     return Container(
               // margin: EdgeInsets.only(left: 50, right: 50),
               height: 350,
-              padding: const EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 15, bottom: 15, left: 120, right: 120),
               // color: Colors.white,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

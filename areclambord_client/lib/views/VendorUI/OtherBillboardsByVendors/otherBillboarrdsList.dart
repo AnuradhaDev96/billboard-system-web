@@ -24,6 +24,7 @@ class _OtherBillboardsListState extends State<OtherBillboardsList> {
   final _getBillboardVacanciesScaffoldKey = GlobalKey<ScaffoldState>();
   // static Stream<DataSnapshot> vacancyList;
   List<BillboardVacancyResponse> list = [];
+  // List<List<BillboardVacancyResponse>> typeList = [];//chip
   static bool isLoading = true;
   // String url,title;
 
@@ -56,47 +57,17 @@ class _OtherBillboardsListState extends State<OtherBillboardsList> {
       setState(() {          
            isLoading = false;   
       });
-    // var res = json.decode(response.body);
-    // DataSnapshot wert = res;
-    // print(res);
-    // print(wert);
-    // return res.map((data) => (
-    //   new BillboardVacancyResponse.fromSnapshot(data))).toList();
-    // return wert;
+      List<BillboardVacancyResponse> typeList;
+      typeList = list.where((i) => i.type == "Digital").toList();
+      print(typeList[0].type);
+      // for(BillboardVacancyResponse i in list){
+      //   typeList = list.where((i) => i.type == "Digital");
+      //   // if(i.type == "Digital"){
+      //   //   typeList.add(i);
+      //   // }
+      //   print(typeList[0]);
+      // } //chip
   }
-
-  // purchaseVacancyButton(BillboardVacancyResponse vacancyResponse) {
-  //   return SizedBox(
-  //     width: 80,
-  //     child: MaterialButton(
-  //       minWidth: double.infinity,
-  //       height: 20,  
-  //       elevation: 5,      
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(70.0)
-  //       ),
-  //       color: Colors.orange[400],
-  //       child: Text(
-  //         "Purchase",
-  //         style: TextStyle(
-  //           fontSize: 15.0,
-  //           color: Colors.white 
-  //         ),
-  //       ),
-  //       onPressed: (){
-  //         // if (_formKey.currentState.validate()) {
-  //         //   //addMall();
-            
-  //         // }
-  //         Navigator.push(
-  //           context,
-  //           // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
-  //           MaterialPageRoute(builder: (context) => BuyBillboardVacancy(vacancyForPurchase:vacancyResponse)),
-  //         );                
-  //       }
-  //     ),
-  //   );
-  // }
 
  @override
  Widget build(BuildContext context) {
@@ -247,89 +218,3 @@ class _OtherBillboardsListState extends State<OtherBillboardsList> {
       );
   }
 }
-
-// ListTile buildItemsForListView(BuildContext context, int index) {
-//       return ListTile(
-//         title: list[index].urlToImage == null ? Image.asset(Constants.NEWS_PLACEHOLDER_IMAGE_ASSET_URL) : Image.network(_newsArticles[index].urlToImage), 
-//         subtitle: Text(_newsArticles[index].title, style: TextStyle(fontSize: 18)),
-//       );
-//   }
-
-
-
-
-
-        //     FutureBuilder(
-        // future: null,
-        // builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //   if (snapshot.hasError) {
-        //     return Center(
-        //       child: Text(snapshot.error.toString()),
-        //     );
-        //   }
-        //   if (snapshot.hasData) {
-        //     return ListView.builder(                        
-        //       reverse: false,
-        //       cacheExtent: 10000.00,
-        //       itemCount: snapshot.data.length,
-        //       padding: EdgeInsets.all(8),
-        //       itemBuilder: (BuildContext context, int index) {
-        //         return Row(
-        //           children: [
-        //             Container(
-        //               height: 120,
-        //               alignment: Alignment.center,
-        //               child: Container(
-        //                 height: 120,
-        //                 width: 120,
-        //                 child: Card(
-        //                   child: Text(
-        //                     list[index],
-        //                     style: TextStyle(color: Colors.green),
-        //                   ),
-        //                 ),
-        //               ),
-        //             ),
-                  
-        //             // Expanded(
-        //             //   child: Container(
-        //             //     child: Column(
-        //             //       crossAxisAlignment: CrossAxisAlignment.start,
-        //             //       children: [
-        //             //         SizedBox(
-        //             //           height: 10,
-        //             //         ),
-                          
-        //             //         Row(
-        //             //           children: [
-        //             //             Text(
-        //             //               "Time: ",
-        //             //               style: TextStyle(color: Colors.black),
-        //             //             ),
-        //             //             Text(
-        //             //               snapshot.data[index]['time'],
-        //             //               style: TextStyle(color: Color(0xff868597)),
-        //             //             ),
-        //             //           ],
-        //             //         ),
-            
-        //             //         Container(
-        //             //           height: 50,
-        //             //           child: Text(
-        //             //             snapshot.data[index]['location'],
-        //             //             style: TextStyle(color: Color(0xff868597)),
-        //             //           ),
-        //             //         ),
-        //             //       ],
-        //             //     ),
-        //             //   ),
-        //             // ),
-        //           ],
-        //         );
-        //       },
-        //     );
-        //   }
-        //   return Center(
-        //     child: CircularProgressIndicator(),
-        //   );
-        // })
