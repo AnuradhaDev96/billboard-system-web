@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
         color: Colors.orange[400],
         child: const Text(
           "Login",
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 15.0,
             color: Colors.white 
           ),
@@ -84,14 +84,14 @@ class _LoginScreenState extends State<LoginScreen> {
           //   //addMall();
             
           // }
-          // logInUserByCredentials();
-          Navigator.push(
-            context,
-            // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
-            MaterialPageRoute(builder: (context) => const SubmitTicketScreen()),
-            // MaterialPageRoute(builder: (context) => PromotersDetails()),
-            // MaterialPageRoute(builder: (context) => PurchasedBillboardsByCustomer()),
-          );                
+          logInUserByCredentials();
+          // Navigator.push(
+          //   context,
+          //   // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
+          //   MaterialPageRoute(builder: (context) => const SubmitTicketScreen()),
+          //   // MaterialPageRoute(builder: (context) => PromotersDetails()),
+          //   // MaterialPageRoute(builder: (context) => PurchasedBillboardsByCustomer()),
+          // );                
         }
       ),
     );
@@ -287,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   const Text(
                     "Login",
-                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),                  
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),                  
                 ],
               ),
               const SizedBox(height: 20,),

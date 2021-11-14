@@ -11,7 +11,7 @@ final _zsformKey = GlobalKey<FormState>();
 
   backToHomeButton(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
+      padding: const EdgeInsets.only(top:8, bottom: 8, left: 10, right: 10),
       child: MaterialButton(
         hoverElevation: 20.0, 
         minWidth: 200,
@@ -21,7 +21,7 @@ final _zsformKey = GlobalKey<FormState>();
           borderRadius: BorderRadius.circular(70.0)
         ),
         color: Colors.black,
-        child: Text(
+        child: const Text(
           "Back to Home",
           style: TextStyle(
             fontSize: 15.0,
@@ -46,7 +46,7 @@ final _zsformKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top:10.0, bottom: 10.0, left: 320.0, right: 320.0),
+      padding: const EdgeInsets.only(top:10.0, bottom: 10.0, left: 320.0, right: 320.0),
       child: Card(
         color: Colors.orange[200],
         elevation: 10,
@@ -54,7 +54,7 @@ final _zsformKey = GlobalKey<FormState>();
         //elevation: 10.0,
     child: Padding(                
       //padding: EdgeInsets.all(5.0),
-    padding: EdgeInsets.only(top:10.0, bottom: 10.0, left: 50.0, right: 50.0),
+    padding: const EdgeInsets.only(top:10.0, bottom: 10.0, left: 50.0, right: 50.0),
     child: Column(                     
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +68,7 @@ final _zsformKey = GlobalKey<FormState>();
               color: Colors.orange[800]),),                  
           ],
         ),
-        SizedBox(height: 8,),
+        const SizedBox(height: 8,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [                  
@@ -80,16 +80,16 @@ final _zsformKey = GlobalKey<FormState>();
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(top:5.0, bottom: 5.0, left: 60.0, right: 60.0),
+          padding: const EdgeInsets.only(top:5.0, bottom: 5.0, left: 60.0, right: 60.0),
           child: Column(                  
             children: <Widget>[
               // userName,
               // password,                        
-              SizedBox(
+              const SizedBox(
                 height: 15.0,
               ),
               backToHomeButton(mainContext),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
             ],
