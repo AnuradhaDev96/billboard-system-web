@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:areclambord_client/Commons/constants.dart';
 import 'package:flutter/material.dart';
 

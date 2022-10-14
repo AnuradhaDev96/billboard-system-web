@@ -74,24 +74,24 @@ class _LoginScreenState extends State<LoginScreen> {
         color: Colors.orange[400],
         child: const Text(
           "Login",
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15.0,
-            color: Colors.white 
+            color: Colors.white
           ),
         ),
         onPressed: (){
           // if (_formKey.currentState.validate()) {
           //   //addMall();
-            
+
           // }
-          logInUserByCredentials();
-          // Navigator.push(
-          //   context,
-          //   // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
-          //   MaterialPageRoute(builder: (context) => const SubmitTicketScreen()),
-          //   // MaterialPageRoute(builder: (context) => PromotersDetails()),
-          //   // MaterialPageRoute(builder: (context) => PurchasedBillboardsByCustomer()),
-          // );                
+          // logInUserByCredentials();
+          Navigator.push(
+            context,
+            // MaterialPageRoute(builder: (context) => DashboardVendorScreen()),
+            MaterialPageRoute(builder: (context) => const SubmitTicketScreen()),
+            // MaterialPageRoute(builder: (context) => PromotersDetails()),
+            // MaterialPageRoute(builder: (context) => PurchasedBillboardsByCustomer()),
+          );
         }
       ),
     );
@@ -109,10 +109,10 @@ class _LoginScreenState extends State<LoginScreen> {
     // LoginCredentialsModel credentials = LoginCredentialsModel(email: userName.controller!.text, password: password.controller!.text);
     LoginCredentialsModel credentials = LoginCredentialsModel(email: mokEmail, password: mokPassword);
 
-    
-    var url = Uri.parse(aReclamboardApiUrl + 'api/user/signin/');  
+
+    var url = Uri.parse(aReclamboardApiUrl + 'api/user/signin/');
     var body = jsonEncode(credentials.toMap());
-    print(body);  
+    print(body);
     var response = await http.post(
       url,
       headers: {
@@ -121,21 +121,21 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       body: jsonEncode(credentials.toMap())
     );
-    
+
     if (response.statusCode == 200) {
-      
+
       var returnBody = jsonDecode(response.body);
-      
+
       SessionLoggedInUser loggedUser = SessionLoggedInUser(email: returnBody['email'], localId: returnBody['localId'], firstName: returnBody['firstName'],
       lastName: returnBody['lastName'], type: returnBody['type']);
 
       setState(() {
-          isLoggingInChecking = false;    
+          isLoggingInChecking = false;
       });
       // print(loggedUser.type);
       // _loginScaffoldKey.currentState.showSnackBar(SnackBar(
       //   content: Text(returnBody['message']),
-      //   backgroundColor: Colors.teal[900],        
+      //   backgroundColor: Colors.teal[900],
       //   ));
 
         // var access_token = returnBody['access_token'];
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => DashboardVendorScreen(sessionLoggedInUser: loggedUser,)),
-          // ); 
+          // );
           Navigator.push(
             context,
             BounceInCenterPageRoute(widget: DashboardVendorScreen(sessionLoggedInUser: loggedUser))
@@ -155,16 +155,16 @@ class _LoginScreenState extends State<LoginScreen> {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => DashboardCustomerScreen(sessionLoggedInUser: loggedUser,)),
-          // ); 
+          // );
           Navigator.push(
             context,
             BounceInCenterPageRoute(widget: DashboardCustomerScreen(sessionLoggedInUser: loggedUser))
-          );           
-        }        
-    } 
+          );
+        }
+    }
     else if (response.statusCode == 404){
       setState(() {
-          isLoggingInChecking = false;    
+          isLoggingInChecking = false;
       });
 
         final snackBar = SnackBar(
@@ -176,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
       // _loginScaffoldKey.currentState.setState(() {
-        
+
       // });
     }
   }
@@ -193,8 +193,8 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: MaterialButton(
         minWidth: double.infinity,
-        height: 60,  
-        elevation: 5,      
+        height: 60,
+        elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(70.0)
         ),
@@ -203,14 +203,14 @@ class _LoginScreenState extends State<LoginScreen> {
           "Sign Up",
           style: TextStyle(
             fontSize: 15.0,
-            color: Colors.white 
+            color: Colors.white
           ),
         ),
         onPressed: (){
           Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SignUpScreen()),
-                );               
+                );
         }
       ),
     );
@@ -263,22 +263,22 @@ class _LoginScreenState extends State<LoginScreen> {
       key: _loginScaffoldKey,
       // appBar: AppBar(
       //   elevation: 0,
-      //   brightness: Brightness.light,        
+      //   brightness: Brightness.light,
       //   backgroundColor: Colors.white,
       // ),
       body: Stack(
         fit: StackFit.expand,
-        children: <Widget>[ 
+        children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top:30.0, bottom: 30.0, left: 80.0, right: 80.0),
+            padding: const EdgeInsets.only(top:30.0, bottom: 30.0, left: 10.0, right: 10.0),
             child: Card(
               elevation: 10.0,
-              child: SingleChildScrollView( 
+              child: SingleChildScrollView(
               //elevation: 10.0,
-          child: Padding(                
+          child: Padding(
             //padding: EdgeInsets.all(5.0),
           padding: const EdgeInsets.only(top:30.0, bottom: 20.0, left: 30.0, right: 30.0),
-          child: Column(                     
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -287,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   const Text(
                     "Login",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),                  
+                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                 ],
               ),
               const SizedBox(height: 20,),

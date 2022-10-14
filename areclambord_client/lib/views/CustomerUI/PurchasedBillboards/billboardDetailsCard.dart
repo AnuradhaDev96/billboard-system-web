@@ -1,8 +1,10 @@
-import 'package:areclambord_client/Commons/constants.dart';
 import 'package:areclambord_client/Models/billboardVacancyResponse.dart';
 import 'package:areclambord_client/views/CustomerUI/ProgressEvaluation/evaluateAdProgress.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
+import 'package:universal_html/html.dart' as html;
+
+import 'package:url_launcher/url_launcher.dart';
 
 // import '../vacancyListView.dart';
 
@@ -108,14 +110,25 @@ final _zsformKey = GlobalKey<FormState>();
           ),
         ),
         onPressed: (){
-          html.window.open("https://www.google.com/maps/search/?api=1&query=$lat,$long", "_blank");             
+          _launchMapUrlOfUser(lat, long);
         }
       ),
     );
   }
 
+  void _launchMapUrlOfUser(double lat, double long) async {
+    String url = "https://www.google.com/maps/search/?api=1&query=$lat,$long";
+    if (kIsWeb) {
+      html.window.open(url, "_blank");
+    } else {
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        print("URL is not available");
+      }
+    }
 
-  
+  }
 
   @override
   Widget build(BuildContext context) {

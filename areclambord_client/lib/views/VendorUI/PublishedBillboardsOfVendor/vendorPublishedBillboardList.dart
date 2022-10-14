@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 import 'package:areclambord_client/Models/billboardVacancyResponse.dart';
 // import 'package:areclambord_client/views/CustomerUI/purchaseBillboard.dart';
 import 'package:flutter/material.dart';

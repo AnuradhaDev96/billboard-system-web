@@ -6,7 +6,6 @@ import 'package:areclambord_client/views/CustomerUI/PurchasedBillboards/billboar
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../../Commons/constants.dart';
-import 'dart:html' as html;
 
 // import 'package:firebase_database/firebase_database.dart';
 // class PromotersDetails extends StatefulWidget {
